@@ -13,3 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.ulWrapper {
+  display: inline;
+}
+
+.image {
+  display: inline;
+}
+
+.name {
+  display: inline;
+  color: red;
+}
+
+.experience {
+  display: inline;
+}
+

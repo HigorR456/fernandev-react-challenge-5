@@ -25,44 +25,64 @@ function App() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/1`)
-    .then((res) => {
+    fetch('https://pokeapi.co/api/v2/pokemon')
+    .then(res => {
       return res.json();
     })
-    .then((data) => {
-      //<li class='liWrapper'>
-      //<img class='image' src=${data.sprites.front_default}></img>
-      //<p class='name'>${data.name}</p>
-      //<p class='experience'>${data.base_experience}</p>
-      //</li>;
-      
-      console.log(list)
-      console.log(data)
-      //console.log(data.name);
-      //console.log(data.base_experience);
-      //console.log(data.sprites.front_default)
+    .then(data => {
+      setList(data.results);
+      console.log(data.results)
+      console.log('setList')
     })
   }, []);
-  
-  console.log(list)
 
   return (
     <>
       <h3>desafio fernandev</h3>
       <h1>consumir api pokémon</h1>
-
+      <hr />
       {list.map((item) => (
-        <Pokemon data={item} />
+        <Pokemon key={item.name} obj={item} />
       ))}
 
-      <button>Fetch</button>
     </>
   );
 }
 
-const Pokemon = () => {
+const Pokemon = ({ obj, newArray }) => {
+  const [sortArray, setSortArray] = useState([]);
+  //setSortArray(obj)
+
+  console.log(sortArray)
+  obj = obj.name;
+
+  //console.log(newArray)
+  //console.log(obj);
+
+  const [details, setDetails] = useState(null)
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${obj}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      setTimeout(setDetails(data), 500);
+      console.log('setDetails')
+    })
+  }, [])
+  
+  if (details === null) {
+    return <div>-</div>
+  }
+
   return (
-    <div>pokemon</div>
+    <div className='divWrapper'>
+      <span><img className='image' src={details.sprites.front_default}></img></span>
+      <p className='name'>{details.name}</p>
+      <p className='expTag'>&nbsp;- EXP&nbsp;</p>
+      <p className='experience'>{details.base_experience}</p>
+    </div>
   )
 };
 

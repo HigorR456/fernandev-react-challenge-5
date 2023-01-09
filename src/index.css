@@ -14,20 +14,24 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.ulWrapper {
-  display: inline;
+.divWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .image {
-  display: inline;
+  width: 48px;
 }
 
 .name {
-  display: inline;
-  color: red;
+  font-weight: bold;
 }
 
-.experience {
-  display: inline;
+.divWrapper:hover .image {
+  width: 96px;
+}
+
+.divWrapper:hover p {
+  font-size: 32px;
 }
 

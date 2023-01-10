@@ -19,11 +19,14 @@ experience => base_experience
 
 EXTRA: if you can sort by name.
 */
+let resultsArray = [];
+let ascArray = [];
+let descArray = [];
 
 function App() {
   
   const [list, setList] = useState([]);
-
+  
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon')
     .then(res => {
@@ -31,15 +34,52 @@ function App() {
     })
     .then(data => {
       setList(data.results);
-      console.log(data.results)
+      resultsArray = data.results;
+      console.log(resultsArray)
       console.log('setList')
     })
   }, []);
+  
+  const handleList = () => {
+    setList(resultsArray);
+  }
+
+  const handleAscending = () => {
+      if (ascArray.length === resultsArray.length) {
+        setList(ascArray);
+      } else {
+        console.log('elseAsc')
+        let i = 0;
+        while (i<ascending.length) {
+          ascArray = [...ascArray, {name: ascending[i]}];
+          i++;
+        };
+        setList(ascArray);
+      }
+  }
+
+  const handleDescending = () => {
+    if (descArray.length === resultsArray.length) {
+      setList(descArray);
+    } else {
+      console.log('elseDesc')
+      let j = 0;
+      while (j<descending.length) {
+        descArray = [...descArray, {name: descending[j]}];
+        j++;
+      };
+      setList(descArray);
+    }
+
+  }
 
   return (
     <>
       <h3>desafio fernandev</h3>
       <h1>consumir api pokémon</h1>
+      <button onClick={handleList} >Sort List</button>
+      <button onClick={handleAscending} >Sort Alphabetically Ascending</button>
+      <button onClick={handleDescending} >Sort Alphabetically Descending</button>
       <hr />
       {list.map((item) => (
         <Pokemon key={item.name} obj={item} />
@@ -49,15 +89,11 @@ function App() {
   );
 }
 
-const Pokemon = ({ obj, newArray }) => {
-  const [sortArray, setSortArray] = useState([]);
-  //setSortArray(obj)
+let ascending = []
+let descending = []
 
-  console.log(sortArray)
+const Pokemon = ({ obj }) => {
   obj = obj.name;
-
-  //console.log(newArray)
-  //console.log(obj);
 
   const [details, setDetails] = useState(null)
 
@@ -68,6 +104,9 @@ const Pokemon = ({ obj, newArray }) => {
     })
     .then(data => {
       setTimeout(setDetails(data), 500);
+      (ascending = [...ascending, data.name.slice(0)]).sort();
+      (descending = [...descending, data.name.slice(0)]).reverse();
+
       console.log('setDetails')
     })
   }, [])

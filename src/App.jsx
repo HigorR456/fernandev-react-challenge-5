@@ -23,6 +23,9 @@ let resultsArray = [];
 let ascArray = [];
 let descArray = [];
 
+let ascending = [];
+let descending = [];
+
 function App() {
   
   const [list, setList] = useState([]);
@@ -34,7 +37,7 @@ function App() {
     })
     .then(data => {
       setList(data.results);
-      resultsArray = data.results;
+      resultsArray = [...data.results];
       console.log(resultsArray)
       console.log('setList')
     })
@@ -59,6 +62,7 @@ function App() {
   }
 
   const handleDescending = () => {
+    descending = ascending.reverse()
     if (descArray.length === resultsArray.length) {
       setList(descArray);
     } else {
@@ -89,8 +93,6 @@ function App() {
   );
 }
 
-let ascending = []
-let descending = []
 
 const Pokemon = ({ obj }) => {
   obj = obj.name;
@@ -105,7 +107,6 @@ const Pokemon = ({ obj }) => {
     .then(data => {
       setTimeout(setDetails(data), 500);
       (ascending = [...ascending, data.name.slice(0)]).sort();
-      (descending = [...descending, data.name.slice(0)]).reverse();
 
       console.log('setDetails')
     })

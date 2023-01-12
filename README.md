@@ -1,3 +1,20 @@
+# Pokemon List
+
+This is my solution of the React Interview Challenge #05 created by fernandev.
+- In this challenge I consume the pokeapi (link below).
+- It returns a list of 20 pokemon 
+- Throughout this first list I fetch data again, once for each of these 20 pokemon returning: image, name and experience. 
+- Using state I can sort between alphabetically descending/ ascending or the original format it comes.
+
+*After the images you can see fernandev's description and YouTube link to his solution of the challange.
+
+Poke API: https://pokeapi.co/
+
+![image](https://user-images.githubusercontent.com/109878939/212134680-5da1524b-fcb9-46ae-a874-18b9cd24672c.png)
+![image](https://user-images.githubusercontent.com/109878939/212134736-842ed75f-a8c3-4217-b9d9-485f65630871.png)
+![image](https://user-images.githubusercontent.com/109878939/212134779-7ef15a7c-af51-44d0-91f3-403df8a0dea9.png)
+
+
 # fernandev
 
 **Se você curtir esse conteúdo, deixa uma STAR aí nesse repo,** porque isso me motiva a trazer mais conteúdos desse gênero.
